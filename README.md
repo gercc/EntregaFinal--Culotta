@@ -6,7 +6,7 @@
 > Instalación
 
 ```
-git clone [https://github.com/tu-usuario/tu-proyecto.git]
+git clone https://github.com/gercc/EntregaFinal--Culotta.git
 npm install
 npm run dev
 ```
