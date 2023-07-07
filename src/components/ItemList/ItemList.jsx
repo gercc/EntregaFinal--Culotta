@@ -1,7 +1,7 @@
 import * as React from 'react';
-import ItemCount from '../ItemCount/ItemCount';
+import { Link } from 'react-router-dom'
 
-const ItemDetail = ({ data, url, alt, onAdd, added }) => {
+const ItemList = ({ data, url, alt}) => {
 
 
   return (
@@ -12,15 +12,12 @@ const ItemDetail = ({ data, url, alt, onAdd, added }) => {
         <p className='card-text text-secondary'>
           {data && data.description}
         </p>
-        <a href={url}>
+        <Link to={url}>
           <button className="btn btn-outline-secondary rounded-0">Ver Más</button>
-        </a>
-        <div>
-          {added ? <Link to="/cart">Ir al carrito</Link> : <ItemCount inicial={1} onAdd={onAdd} />}
-        </div>
+        </Link>
       </div>
     </div>
   );
 }
 
-export default ItemDetail
+export default ItemList

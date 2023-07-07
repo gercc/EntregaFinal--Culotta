@@ -31,8 +31,13 @@ const CartPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    const fechaCompra = new Date();
+
     const docRef = await addDoc(collection(db, "compras"), {
-      values,
+      ...values,
+      fechaCompra: fechaCompra.toISOString(),
+      productos: cart,
+      total: total
     });
 
     setIdCompra(docRef.id);
@@ -40,16 +45,21 @@ const CartPage = () => {
 
   }
 
-  const { cart } = useContext(CartContext)
+  const { cart, total } = useContext(CartContext)
 
   return cart.length > 0 ? (
     <div className='container h-100'>
       <h1 className='text-center my-5'>Carrito de compras</h1>
-      <div>
-        <CartElements name="producto" />
+      <div className='container d-flex justify-content-center align-items-center'>
+        <div className='row text-center justify-content-center'>
+          <CartElements name="producto" />
+        </div>
+      </div>
+      <div className='my-5'>
         <CartTotal />
       </div>
-      <div className="container w-50">
+      <div className="container w-50 my-5">
+      {idCompra && <PurchaseAlert idCompra={idCompra} />}
         <form className="formShadow" onSubmit={onSubmit}>
           <div className="">
             <TextField fullWidth label="Nombre" id="fullWidth" margin="normal" name="nombre" value={values.nombre} onChange={handleOnChange} required />
@@ -73,10 +83,9 @@ const CartPage = () => {
             <input className="btn btn-primary btnContacto" type="submit" value="ENVIAR"></input>
           </div>
         </form>
-        {idCompra && <PurchaseAlert idCompra={idCompra} />}
       </div>
     </div>
-  ): (
+  ) : (
     <h2 className='text-center my-5'>Su carrito esta vacio</h2>
   )
 }

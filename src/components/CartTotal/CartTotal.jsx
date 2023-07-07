@@ -3,16 +3,16 @@ import { CartContext } from '../CartContext/CartContext'
 
 
 const CartTotal = () => {
-    const { cart } = useContext(CartContext)
+    const {total, clearCart } = useContext(CartContext)
 
-    const total = cart.reduce((acumulativo, elemento) => acumulativo + elemento.price, 0)
   return (
     <div>
         <h3>
-            Total a pagar: ${total}
+            Total a pagar: ${total.toLocaleString()}
         </h3>
+        <button className="btn btn-danger" onClick={clearCart}>Vaciar Carrito</button>
     </div>
   )
 }
 
-export default CartTotal
+export default CartTotal

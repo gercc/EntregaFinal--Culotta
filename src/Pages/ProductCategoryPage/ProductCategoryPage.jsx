@@ -23,17 +23,17 @@ const ProductCategoryPage = () => {
 
   return (
     <div>
-    <h1 style={{ textAlign: "center", paddingTop: "55px", paddingBottom: "30px" }}>
-      {category.toUpperCase()}
-    </h1>
-    {productosCategory.map((producto) => (
+      <h1 style={{ textAlign: "center", paddingTop: "55px", paddingBottom: "30px" }}>
+        {category.toUpperCase()}
+      </h1>
       <div className='container d-flex justify-content-center align-items-center'>
-        <div className='col-md-8 my-5' key={producto.id}>
-          <ItemDetailContainer data={producto} />
-        </div>
+        {productosCategory.map((producto) => (
+          <div key={producto.id}>
+            <ItemDetailContainer data={producto} />
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
+    </div>
   );
 };
 

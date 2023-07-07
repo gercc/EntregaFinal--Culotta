@@ -8,27 +8,6 @@ const ItemListContainer = () => {
 
   const { productos } = useContext(CartContext)
 
-
-  //const [productos, setProductos] = useState([]);
-
-  //useEffect(() => {
-  //setProductos(productosData);
-  //}, []);
-
-  //useEffect(() => {
-  //const getProductos = async () => {
-  //const q = query(collection(db, "products"));
-  //const querySnapshot = await getDocs(q);
-  //const docs = [];
-  //querySnapshot.forEach((doc) => {
-  //docs.push({...doc.data(), id: doc.id })
-  //});
-  //setProductos(docs);
-  //}
-  //getProductos()
-  //}, []);
-
-
   return (
     <div>
       <div className='container d-flex justify-content-center align-items-center'>

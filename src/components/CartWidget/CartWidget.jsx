@@ -8,17 +8,17 @@ import '../CartWidget/CartWidget.css';
 
 const CartWidget = () => {
 
-  const { cart } = useContext(CartContext)
+  const { totalQuantity } = useContext(CartContext)
 
   return (
     <div className="cart-widget">
       <Link to="/cart">
       <FontAwesomeIcon icon={faCartShopping} size="2x" color="white" />
       </Link>
-      <div className="qty-display">{cart.length}</div>
+      <div className="qty-display">{totalQuantity}</div>
     </div>
   );
 };
 
-export default CartWidget;
+export default CartWidget;
 

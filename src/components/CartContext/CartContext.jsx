@@ -22,29 +22,26 @@ const CartContextProvider = ({ children }) => {
     getProductos();
   }, []);
 
-  //const agregarAlCarrito = (product, count) => {
-  //console.log(`agregaste ${product.product}, cantidad: ${count}`)
-  //}
-
-  //const buyProducts = () => {
-  //console.log('Cantidad seleccionada:', cantidad); 
-  //const productoConCantidad = { ...data, cantidad };
-
-  //setCart([...cart, productoConCantidad]);
-  //console.log('Producto agregado al carrito:', productoConCantidad);
-  //};
 
   const agregarAlCarrito = (product, count) => {
     const newObj = {
-      item: product,
+       ...product,
       count
     }
     setCart([...cart, newObj])
   }
+  const handleRemoveFromCart = (productId) => {
+    setCart(cart.filter(producto => producto.id !== productId));
+  };
+   const clearCart = () =>{
+    setCart([])
+   }
+  const total = cart.reduce((acumulativo, elemento) => acumulativo + elemento.price * elemento.count, 0)
 
+  const totalQuantity = cart.reduce((acumulativo, elemento) => acumulativo + elemento.count, 0)
 
   return (
-    <CartContext.Provider value={{ productos, cart, setCart, agregarAlCarrito }}>
+    <CartContext.Provider value={{ productos, cart, setCart, agregarAlCarrito, handleRemoveFromCart, total, totalQuantity, clearCart}}>
       {children}
     </CartContext.Provider>
   );
